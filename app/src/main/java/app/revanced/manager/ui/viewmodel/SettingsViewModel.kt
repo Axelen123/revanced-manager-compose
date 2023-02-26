@@ -4,6 +4,9 @@ import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.ClipboardManager
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.ViewModel
 import app.revanced.manager.domain.manager.PreferencesManager
 import app.revanced.manager.ui.theme.Theme

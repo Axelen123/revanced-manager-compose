@@ -18,10 +18,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import app.revanced.manager.BuildConfig
 import app.revanced.manager.R
 import app.revanced.manager.domain.manager.PreferencesManager
 import app.revanced.manager.ui.component.GroupHeader
@@ -41,6 +44,7 @@ fun SettingsScreen(
 ) {
     val prefs = vm.prefs
     val context = LocalContext.current
+    val clipboardManager = LocalClipboardManager.current
     val pm = context.getSystemService(Context.POWER_SERVICE) as PowerManager
     var showBatteryButton by remember { mutableStateOf(!pm.isIgnoringBatteryOptimizations(context.packageName)) }
     Column(
@@ -122,6 +126,21 @@ fun SettingsScreen(
         SocialItem(R.string.github, R.drawable.ic_github, vm::openGitHub)
         SocialItem(R.string.opensource_licenses, Icons.Default.LibraryBooks, onClickLicenses)
         SocialItem(R.string.screen_contributors_title, Icons.Default.Group, onClickContributors)
+        Divider()
+        Surface (
+            onClick= { clipboardManager.setText(AnnotatedString("amogus")) }
+        ) {
+            GroupHeader(stringResource(R.string.info))
+            Text(
+                text = stringResource(R.string.about),
+                style = MaterialTheme.typography.titleMedium
+            )
+            Text("Version: ${BuildConfig.VERSION_NAME}")
+            Text("Build: ${BuildConfig.BUILD_TYPE}")
+            Text("Model: ${Build.MODEL}")
+            Text("Android Version: ${Build.VERSION.RELEASE}")
+            Text("Arch: ${Build.SUPPORTED_ABIS[0]}")
+        }
     }
 }
 

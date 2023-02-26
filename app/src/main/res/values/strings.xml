@@ -16,6 +16,8 @@
     <string name="update_patch_bundle">Update Patches</string>
     <string name="expand">Expand</string>
     <string name="appearance">Appearance</string>
+    <string name="info">Info</string>
+    <string name="about">About</string>
     <string name="app_selector_title">Select an app…</string>
     <string name="card_application_header">Select Application</string>
     <string name="select_an_application_first">Select an application first.</string>
